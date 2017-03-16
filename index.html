@@ -102,8 +102,8 @@
   .grid .item:nth-child(2)  { flex: 0 1 calc(100% - 1.5vw); height: 30vh; }
   .grid .item:nth-child(3)  { flex: 0 1 calc(100% - 1.5vw); height: 80vh; }
   .grid .item:nth-child(4)  { flex: 0 1 calc(100% - 1.5vw); height: 80vh; }
-  .grid .item:nth-child(5)  { flex: 0 1 calc(50% - 1.5vw); }
-  .grid .item:nth-child(6)  { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(5)  { flex: 0 1 calc(100% - 1.5vw); height: 80vh; }
+  .grid .item:nth-child(6)  { flex: 0 1 calc(100% - 1.5vw); height: 80vh; }
   .grid .item:nth-child(7)  { flex: 0 1 calc(50% - 1.5vw); }
   .grid .item:nth-child(8)  { flex: 0 1 calc(50% - 1.5vw); }
   .grid .item:nth-child(9)  { flex: 0 1 calc(50% - 1.5vw); }
@@ -337,7 +337,7 @@ body {
   </div>
   <div class="item" tabindex="3">
     <div class="box">
-      <div id="main"></div>
+      <div id="main" style="width:580px;height:500px"></div>
          <script type="text/javascript">
 
             var myChart = echarts.init(document.getElementById('main'));
@@ -349,7 +349,7 @@ body {
         }
     },
     legend: {
-        data:['Swimming Spots','Water-based Sports Center','Ball-based Game Courts','Other Sports Centers','Tatol No. of Facilities','Total No. of Peopl Served']
+        data:['Swimming Spots','Other Sports Centers','Ball-based Game Courts','Tatol No. of Facilities','Tatol No. of People Served (100k)']
     },
     grid: {
         left: '3%',
@@ -376,22 +376,16 @@ body {
             data:[84, 84, 84]
         },
         {
-            name:'Water-based Sports Center',
+            name:'Other Sports Centers',
             type:'bar',
             stack: 'Water',
-            data:[5, 5, 5]
-        },
+            data:[120, 120, 121,]
+        }, 
         {
             name:'Ball-based Game Courts',
             type:'bar',
             stack: 'Water',
             data:[2291, 2314, 2348]
-        },
-        {
-            name:'Other Sports Centers',
-            type:'bar',
-            stack: 'Water',
-            data:[120, 120, 121]
         },
         {
             name:'Tatol No. of People Served (100k)',
@@ -409,18 +403,82 @@ body {
 }     
 myChart.setOption(option)
 </script>
-
+<br><i style="text-align:center">Sports Facilities vs ppl served</i><br>
+This graph on the left shows the relationship between the sports facilities in Hong Kong and <br>how many people they served though the years.
+<br>We can see that although the number of facilities doesn't change a lot from 2014 to 2016, but <br>people using it were incresing.
+<br> This suggests an incresing need of sports centers.
     </div>
     </div>
   </div>
   <div class="item" tabindex="4">
     <div class="box">
+      <div id="main" style="width:1100px;height:500px; background-image:linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%)"></div>
+      afajoiefaorigheihtgoiearghoairg
+      <!-- option = {
+    title: {text: 'Culture facilities vs ppl served'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+     legend: {
+        data:['Museums','Libraries','Tatol No. of People Served (100k)']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+     xAxis : [
+        {
+            type : 'category',
+            data : ['2014','2015','2016']
+        }
+    ],
+    yAxis : [
+        {
+            dataMin: '2200',
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'Museums',
+            type:'bar',
+            stack: 'Water',
+            data:[20, 20, 20]
+        },
+     {
+            name:'Libraries',
+            type:'bar',
+            stack: 'Water',
+            data:[77, 79, 89,]
+        }, 
+        {
+            name:'Tatol No. of People Served (100k)',
+            type:'line',
+            data:[64, 61, 46],
+            markPoint : {
+                data : [
+            {type : 'max'}, {name:'2014'},
+            {type : 'average'}, {name:'2015'},
+            {type:'min'},{name:'2016'},
+                            ]
+            },
+        },
+    ],
+}     
+-->
     </div>
   </div>
   <div class="item" tabindex="5">
     <div class="box">
-      <div class="diamond"><span>5</span></div>
-      <div class="tooltip">grid-area: small</div>
+      rsafbairufbiearugiebtgieg
     </div>
   </div>
   <div class="item" tabindex="6">
