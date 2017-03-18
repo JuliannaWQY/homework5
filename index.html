@@ -12,11 +12,13 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script type="text/javascript" src="echarts.min.js"></script>
-</head>
-<body>
+<script type="text/javascript" src="echarts.min.js">
+<script src="map.js"></script>
 
-    <style>
+</head>
+
+<body>
+<style>
 @supports (display: grid) {
 
   .grid {
@@ -32,8 +34,8 @@
     grid-template-areas:
       "hero   hero"
       "big1   big1"
-      "big2   big2"
-      "big3   big3"
+      "med1   med1"
+      "med2   med2"
       "small1 small2"
       "small3 small4"
       "small5 small6"
@@ -47,7 +49,7 @@
       grid-template-rows: repeat(5, 25vh);
       grid-template-areas:
         "hero   hero   hero   med1   med1"
-        "hero   hero   hero   big2   big2"
+        "hero   hero   hero   med2   med2"
         "big1   big1   big1   big1   big1"
         "small1 small2 small3 small4 small5"
         "small6 small7 small8 small9 small10";
@@ -60,7 +62,7 @@
       grid-template-rows: auto;
       grid-template-areas:
       "small1 hero   hero hero med1   med1"
-      "small2 hero   hero hero big2   big2"
+      "small2 hero   hero hero med2   med2"
       "small3 small5 big1 big1 small7 small8"
       "small4 small6 big1 big1 small9 small10";
     }
@@ -68,8 +70,8 @@
 
   .grid .item:nth-child(1)  { grid-area: hero; }
   .grid .item:nth-child(2)  { grid-area: big1; }
-  .grid .item:nth-child(3)  { grid-area: big2; }
-  .grid .item:nth-child(4)  { grid-area: big3; }
+  .grid .item:nth-child(3)  { grid-area: med1; }
+  .grid .item:nth-child(4)  { grid-area: med2; }
   .grid .item:nth-child(5)  { grid-area: small1; }
   .grid .item:nth-child(6)  { grid-area: small2; }
   .grid .item:nth-child(7)  { grid-area: small3; }
@@ -100,10 +102,10 @@
 
   .grid .item:nth-child(1)  { flex: 0 1 calc(100% - 1.5vw); height: 50vh; }
   .grid .item:nth-child(2)  { flex: 0 1 calc(100% - 1.5vw); height: 30vh; }
-  .grid .item:nth-child(3)  { flex: 0 1 calc(100% - 1.5vw); height: 80vh; }
-  .grid .item:nth-child(4)  { flex: 0 1 calc(100% - 1.5vw); height: 80vh; }
-  .grid .item:nth-child(5)  { flex: 0 1 calc(100% - 1.5vw); height: 80vh; }
-  .grid .item:nth-child(6)  { flex: 0 1 calc(100% - 1.5vw); height: 80vh; }
+  .grid .item:nth-child(3)  { flex: 0 1 calc(100% - 1.5vw); }
+  .grid .item:nth-child(4)  { flex: 0 1 calc(100% - 1.5vw); }
+  .grid .item:nth-child(5)  { flex: 0 1 calc(100% - 1.5vw); }
+  .grid .item:nth-child(6)  { flex: 0 1 calc(100% - 1.5vw); }
   .grid .item:nth-child(7)  { flex: 0 1 calc(50% - 1.5vw); }
   .grid .item:nth-child(8)  { flex: 0 1 calc(50% - 1.5vw); }
   .grid .item:nth-child(9)  { flex: 0 1 calc(50% - 1.5vw); }
@@ -123,9 +125,9 @@
     .grid .item:nth-child(2)  { flex: 0 1 calc(40% - 1.5vw); }
     .grid .item:nth-child(3)  { flex: 0 1 calc(50% - 1.5vw); }
     .grid .item:nth-child(4)  { flex: 0 1 calc(50% - 1.5vw); }
-    .grid .item:nth-child(5)  { flex: 0 1 calc(25% - 1.5vw); }
-    .grid .item:nth-child(6)  { flex: 0 1 calc(25% - 1.5vw); }
-    .grid .item:nth-child(7)  { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(5)  { flex: 0 1 calc(50% - 1.5vw); }
+    .grid .item:nth-child(6)  { flex: 0 1 calc(50% - 1.5vw); }
+    .grid .item:nth-child(7)  { flex: 0 1 calc(50% - 1.5vw); }
     .grid .item:nth-child(8)  { flex: 0 1 calc(25% - 1.5vw); }
     .grid .item:nth-child(9)  { flex: 0 1 calc(25% - 1.5vw); }
     .grid .item:nth-child(10) { flex: 0 1 calc(25% - 1.5vw); }
@@ -151,6 +153,7 @@ body {
 
 /* @supports not (display: grid) {
   body:before {
+    content: 'Sorry, seems like your browser doesn\'t support display: grid. Below is the flexbox fallback.';
     display: block;
     padding: 2rem 2rem 0;
     color: #ffffff;
@@ -298,9 +301,9 @@ body {
 .grid .item:nth-child(2)  { background-image: linear-gradient(45deg, #fb7ef6 0%, #cbabfb 60%); }
 .grid .item:nth-child(3)  { background-image: linear-gradient(45deg, #70c1fb 0%, #79ebe0 60%); }
 .grid .item:nth-child(4)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); }
-.grid .item:nth-child(5),
-.grid .item:nth-child(6),
-.grid .item:nth-child(7),
+.grid .item:nth-child(5)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); },
+.grid .item:nth-child(6)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); },
+.grid .item:nth-child(7)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); },
 .grid .item:nth-child(8),
 .grid .item:nth-child(9),
 .grid .item:nth-child(10),
@@ -309,7 +312,94 @@ body {
 .grid .item:nth-child(13),
 .grid .item:nth-child(14) { background-image: linear-gradient(45deg, #feeeab 0%, #fb7eb3 60%); }
 
-    </style>
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
+
+section{
+  text-align:center;
+}
+.footer #button{
+	width:35px;
+	height:35px;
+	border: #727172 12px solid;
+	border-radius:35px;
+	margin:0 auto;
+	position:relative;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.footer #button:hover{
+	width:35px;
+	height:35px;
+	border: #ada9a9 12px solid;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	position:relative;
+}
+.footer {
+	bottom:0;
+	left:0;
+	position:fixed;
+    width: 100%;
+    height: 2em;
+    overflow:hidden;
+    margin:0 auto;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	z-index:999;
+}
+.footer:hover {
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	height: 10em;
+}
+.footer #container{
+	margin-top:5px;
+	width:100%;
+height:100%;
+  position:relative;
+  top:0;
+  left:0;
+	background: #3A3A3A;
+}
+.footer #cont{
+  position:relative;
+  top:-45px;
+  right:190px;
+	width:150px;
+	height:auto;
+	margin:0 auto;
+}
+.footer_center{
+	width:500px;
+	float:left;
+  text-align:center;
+}
+.footer h3{
+	font-family: 'Helvetica';
+  color:papayawhip;
+	font-size: 30px;
+	font-weight: 100;
+	margin-top:70px;
+	margin-left:40px;
+}
+.footer h5{
+	font-family: 'Helvetica';
+  color:papayawhip;
+	font-size: 15px;
+}
+</style>
 
 
 
@@ -332,7 +422,7 @@ body {
     <div class="box">
       <div class="diamond"><span>?</span></div>
       <div class="tooltip">What to do with Wan Chai stadium?</div>
-     <p> <img style="width:400px; height:300px" src="http://cdn2.i-scmp.com/sites/default/files/styles/980x551/public/images/methode/2017/02/03/297441fc-e9ed-11e6-925a-a992a025ddf7_1280x720.JPG?itok=qiEhuRYZ"> </p>
+     <p> <img style="width:380px; height:280px" src="http://cdn2.i-scmp.com/sites/default/files/styles/980x551/public/images/methode/2017/02/03/297441fc-e9ed-11e6-925a-a992a025ddf7_1280x720.JPG?itok=qiEhuRYZ"> </p>
     </div>
   </div>
   <div class="item" tabindex="3">
@@ -410,23 +500,18 @@ This graph on the left shows the relationship between the sports facilities in H
     </div>
     </div>
   </div>
-  <div class="item" tabindex="4">
-    <div class="box">
-      <div id="main" style="width:1100px;height:500px; background-image:linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%)"></div>
-      afajoiefaorigheihtgoiearghoairg
-      <!-- option = {
-    title: {text: 'Culture facilities vs ppl served'
-    },
+ <div class="item" tabindex="4" >
+    <div class="box" style="margin: 0, 10px,0,10px; background-color:#70c1fb">
+      <div id="main2" style="text-align:right; width:500px;height:500px; background-color:#70c1fb"></div>
+       <script type="text/javascript">
+
+            var myChart2 = echarts.init(document.getElementById('main2'));
+            var option = {
     tooltip : {
         trigger: 'axis'
     },
      legend: {
         data:['Museums','Libraries','Tatol No. of People Served (100k)']
-    },
-    toolbox: {
-        feature: {
-            saveAsImage: {}
-        }
     },
     grid: {
         left: '3%',
@@ -473,66 +558,169 @@ This graph on the left shows the relationship between the sports facilities in H
         },
     ],
 }     
--->
+            myChart2.setOption(option)
+</script>
+<br><i style="text-align:center">Culture Centers vs <br>ppl served</i><br><br>
+This graph however, reveals the relationship between Hong Kong's culture facilities and <br>how many people they served though the years.
+<br>We can see that while the nukber of facilities incresed over last three years, <br>people using then were on the contrary decresing.
+<br> This suggests an decline on the need of culture facilities.
     </div>
   </div>
+  <br>
   <div class="item" tabindex="5">
-    <div class="box">
-      rsafbairufbiearugiebtgieg
+    <div class="box" >
+      <div class="box" style="margin: 0, 10px,0,10px; background-color:#fb7ef6">
+      <div style="text-align:center; margin:10px">
+     <h4>However, one important factor in discussing the need of sports and recreation facilities versus culture facilities is the location of them.
+     <br>As a family may feel lazy to go to a district that's far from their home to do sports, yet they may be willing to travel far for a certain 
+     <br>culture activity they enjoy.
+     <br>So let's look how the facilities were located in Hong Kong.</h4>
+     </div>
     </div>
   </div>
+  <br>
   <div class="item" tabindex="6">
-    <div class="box">
-      <div class="diamond"><span>6</span></div>
-      <div class="tooltip">grid-area: small</div>
+    <div class="box" style="background-color:#a8e0ea">
+     <div id="map" style="text-align:right; width:500px;height:500px;background-color:#a8e0ea"></div>
+       <script type="text/javascript">
+       var myMap = echarts.init(document.getElementById('map'));
+    var uploadedDataURL = "xianggang.json";
+
+myMap.showLoading();
+
+$.getJSON(uploadedDataURL, function (geoJson) {
+
+  myMap.hideLoading();
+
+    echarts.registerMap('HK', geoJson);
+
+    myMap.setOption(option = {
+        title: {
+            text: 'Sports and Recreaton Facilities in HK',
+            subtext: 'Source: data.gov.hk',
+            sublink: 'https://data.gov.hk/en/search/portal/sports'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}<br/>{c}Sports grounds/centres'
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        visualMap: {
+            min: 4,
+            max: 10,
+            text:['High','Low'],
+            realtime: false,
+            calculable: true,
+            color: ['orangered','yellow','lightskyblue']
+        },
+        series: [
+            {
+                name: 'Sports and Recreaton Facilities in HK',
+                type: 'map',
+                mapType: 'HK', // 自定义扩展图表类型
+                itemStyle:{
+                    normal:{label:{show:true}},
+                    emphasis:{label:{show:true}}
+                },
+                data:[
+                    {name: '中西區', value: 6},
+                    {name: '灣仔', value: 5},
+                    {name: '東區', value: 7},
+                    {name: '南區', value: 7},
+                    {name: '油尖旺', value: 6},
+                    {name: '深水埗', value: 8},
+                    {name: '九龍城', value: 7},
+                    {name: '黃大仙', value: 8},
+                    {name: '觀塘', value: 9},
+                    {name: '葵青', value: 8},
+                    {name: '荃灣', value: 5},
+                    {name: '屯門', value: 7},
+                    {name: '元朗', value: 8},
+                    {name: '北區', value: 7},
+                    {name: '大埔區', value: 6},
+                    {name: '沙田', value: 9},
+                    {name: '西貢', value: 9},
+                    {name: '離島', value: 6}
+                ],
+                // 自定义名称映射
+                nameMap: {
+                    'Central and Western': '中西區',
+                    'Eastern': '東區',
+                    'Islands': '離島',
+                    'Kowloon City': '九龍城',
+                    'Kwai Tsing': '葵青',
+                    'Kwun Tong': '觀塘',
+                    'North': '北區',
+                    'Sai Kung': '西貢',
+                    'Sha Tin': '沙田',
+                    'Sham Shui Po': '深水埗',
+                    'Southern': '南區',
+                    'Tai Po': '大埔區',
+                    'Tsuen Wan': '荃灣',
+                    'Tuen Mun': '屯門',
+                    'Wan Chai': '灣仔',
+                    'Wong Tai Sin': '黃大仙',
+                    'Yau Tsim Mong': '油尖旺',
+                    'Yuen Long': '元朗'
+                }
+            }
+        ]
+    });
+});
+</script>
+<br>
+So, as we can see, the distribution of sports and recreation centres in Hong Kong is more or less even. <br>Several districts with a raleticely higher population, like Kwun Tong, has more facilities than others.
+<br>However, several districts has a relatively lower number of facilities. <br>The subject of this issue, Wan Chai, is a significant one of them.
     </div>
   </div>
   <div class="item" tabindex="7">
     <div class="box">
-      <div class="diamond"><span>7</span></div>
-      <div class="tooltip">grid-area: small</div>
+      
     </div>
   </div>
   <div class="item" tabindex="8">
     <div class="box">
-      <div class="diamond"><span>8</span></div>
-      <div class="tooltip">grid-area: small</div>
+     
     </div>
   </div>
   <div class="item" tabindex="9">
     <div class="box">
-      <div class="diamond"><span>9</span></div>
-      <div class="tooltip">grid-area: small</div>
+      
     </div>
   </div>
   <div class="item" tabindex="10">
     <div class="box">
-      <div class="diamond"><span>10</span></div>
-      <div class="tooltip">grid-area: small</div>
+      
     </div>
   </div>
   <div class="item" tabindex="11">
     <div class="box">
-      <div class="diamond"><span>11</span></div>
-      <div class="tooltip">grid-area: small</div>
+      
     </div>
   </div>
   <div class="item" tabindex="12">
     <div class="box">
-      <div class="diamond"><span>12</span></div>
-      <div class="tooltip">grid-area: small</div>
+      
     </div>
   </div>
   <div class="item" tabindex="13">
     <div class="box">
-      <div class="diamond"><span>13</span></div>
-      <div class="tooltip">grid-area: small</div>
+      
     </div>
   </div>
   <div class="item" tabindex="14">
     <div class="box">
-      <div class="diamond"><span>14</span></div>
-      <div class="tooltip">grid-area: small</div>
+      
     </div>
   </div>
 </div>
@@ -540,7 +728,25 @@ This graph on the left shows the relationship between the sports facilities in H
 
 
 
-
-
 </body>
+<br>
+<br>
+<footer>
+<section>
+  <h1>More on this project</h1>
+  <h3>Template credit to: </h3>
+</section>
+<div class="footer">
+  <div id="button"></div>
+<div id="container">
+<div id="cont">
+<div class="footer_center">
+<h3>My <a href="http://juliannawqy.wordpress.com">work portfolio</a> and <a href="https://github.com/JuliannaWQY">Github</a> </h3>
+<h5>Template credit to: <a href="http://codepen.io/primalivet/pen/ryjKmV?editors=1000CSS">CSS Grid Layout </a> and <a href="https://codepen.io/nickbraver/pen/mHLCp?editors=1000">Classy Footer </a></h5>
+</div>
+</div>
+</div>
+</div>
+
+</footer>
 </html>
