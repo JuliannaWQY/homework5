@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
@@ -14,10 +13,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript" src="echarts.min.js">
 <script src="map.js"></script>
-
 </head>
 
 <body>
+
 <style>
 @supports (display: grid) {
 
@@ -104,8 +103,8 @@
   .grid .item:nth-child(2)  { flex: 0 1 calc(100% - 1.5vw); height: 30vh; }
   .grid .item:nth-child(3)  { flex: 0 1 calc(100% - 1.5vw); }
   .grid .item:nth-child(4)  { flex: 0 1 calc(100% - 1.5vw); }
-  .grid .item:nth-child(5)  { flex: 0 1 calc(100% - 1.5vw); }
-  .grid .item:nth-child(6)  { flex: 0 1 calc(100% - 1.5vw); }
+  .grid .item:nth-child(5)  { flex: 0 1 calc(50% - 1.5vw); }
+  .grid .item:nth-child(6)  { flex: 0 1 calc(50% - 1.5vw); }
   .grid .item:nth-child(7)  { flex: 0 1 calc(50% - 1.5vw); }
   .grid .item:nth-child(8)  { flex: 0 1 calc(50% - 1.5vw); }
   .grid .item:nth-child(9)  { flex: 0 1 calc(50% - 1.5vw); }
@@ -125,9 +124,9 @@
     .grid .item:nth-child(2)  { flex: 0 1 calc(40% - 1.5vw); }
     .grid .item:nth-child(3)  { flex: 0 1 calc(50% - 1.5vw); }
     .grid .item:nth-child(4)  { flex: 0 1 calc(50% - 1.5vw); }
-    .grid .item:nth-child(5)  { flex: 0 1 calc(50% - 1.5vw); }
-    .grid .item:nth-child(6)  { flex: 0 1 calc(50% - 1.5vw); }
-    .grid .item:nth-child(7)  { flex: 0 1 calc(50% - 1.5vw); }
+    .grid .item:nth-child(5)  { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(6)  { flex: 0 1 calc(25% - 1.5vw); }
+    .grid .item:nth-child(7)  { flex: 0 1 calc(25% - 1.5vw); }
     .grid .item:nth-child(8)  { flex: 0 1 calc(25% - 1.5vw); }
     .grid .item:nth-child(9)  { flex: 0 1 calc(25% - 1.5vw); }
     .grid .item:nth-child(10) { flex: 0 1 calc(25% - 1.5vw); }
@@ -151,7 +150,7 @@ body {
   background: #29343d;
 }
 
-/* @supports not (display: grid) {
+/*@supports not (display: grid) {
   body:before {
     content: 'Sorry, seems like your browser doesn\'t support display: grid. Below is the flexbox fallback.';
     display: block;
@@ -301,9 +300,9 @@ body {
 .grid .item:nth-child(2)  { background-image: linear-gradient(45deg, #fb7ef6 0%, #cbabfb 60%); }
 .grid .item:nth-child(3)  { background-image: linear-gradient(45deg, #70c1fb 0%, #79ebe0 60%); }
 .grid .item:nth-child(4)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); }
-.grid .item:nth-child(5)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); },
-.grid .item:nth-child(6)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); },
-.grid .item:nth-child(7)  { background-image: linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%); },
+.grid .item:nth-child(5),
+.grid .item:nth-child(6),
+.grid .item:nth-child(7),
 .grid .item:nth-child(8),
 .grid .item:nth-child(9),
 .grid .item:nth-child(10),
@@ -364,6 +363,16 @@ section{
     transition: all 1s ease;
 	height: 10em;
 }
+
+a hover {
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	height: 10em;
+}
+
 .footer #container{
 	margin-top:5px;
 	width:100%;
@@ -389,7 +398,7 @@ height:100%;
 .footer h3{
 	font-family: 'Helvetica';
   color:papayawhip;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: 100;
 	margin-top:70px;
 	margin-left:40px;
@@ -399,9 +408,8 @@ height:100%;
   color:papayawhip;
 	font-size: 15px;
 }
+
 </style>
-
-
 
 <header class="header">
   <h1>Sports or Culture?</h1>
@@ -494,15 +502,15 @@ height:100%;
 myChart.setOption(option)
 </script>
 <br><i style="text-align:center">Sports Facilities vs ppl served</i><br>
-This graph on the left shows the relationship between the sports facilities in Hong Kong and <br>how many people they served though the years.
-<br>We can see that although the number of facilities doesn't change a lot from 2014 to 2016, but <br>people using it were incresing.
+This graph on the left shows the relationship between the sports facilities in Hong Kong and how many people they served though the years.
+<br>We can see that although the number of facilities doesn't change a lot from 2014 to 2016, but people using it were incresing.
 <br> This suggests an incresing need of sports centers.
-    </div>
+<br> <br> Source: http://www.lcsd.gov.hk/tc/aboutlcsd/ppr/statistics/leisure.html#fac
     </div>
   </div>
- <div class="item" tabindex="4" >
-    <div class="box" style="margin: 0, 10px,0,10px; background-color:#70c1fb">
-      <div id="main2" style="text-align:right; width:500px;height:500px; background-color:#70c1fb"></div>
+  <div class="item" tabindex="4">
+    <div class="box">
+      <div id="main2" style="width:500px;height:500px; background-image:linear-gradient(45deg, #79ebe0 0%, #70c1fb 60%)"></div>
        <script type="text/javascript">
 
             var myChart2 = echarts.init(document.getElementById('main2'));
@@ -561,26 +569,25 @@ This graph on the left shows the relationship between the sports facilities in H
             myChart2.setOption(option)
 </script>
 <br><i style="text-align:center">Culture Centers vs <br>ppl served</i><br><br>
-This graph however, reveals the relationship between Hong Kong's culture facilities and <br>how many people they served though the years.
-<br>We can see that while the nukber of facilities incresed over last three years, <br>people using then were on the contrary decresing.
+This graph however, reveals the relationship between Hong Kong's culture facilities and how many people they served though the years.
+<br>We can see that while the nukber of facilities incresed over last three years, people using then were on the contrary decresing.
 <br> This suggests an decline on the need of culture facilities.
+<br> <br> Source: http://www.lcsd.gov.hk/tc/aboutlcsd/ppr/statistics/cultural.html#Venues
     </div>
   </div>
-  <br>
   <div class="item" tabindex="5">
-    <div class="box" >
-      <div class="box" style="margin: 0, 10px,0,10px; background-color:#fb7ef6">
-      <div style="text-align:center; margin:10px">
-     <h4>However, one important factor in discussing the need of sports and recreation facilities versus culture facilities is the location of them.
-     <br>As a family may feel lazy to go to a district that's far from their home to do sports, yet they may be willing to travel far for a certain 
-     <br>culture activity they enjoy.
-     <br>So let's look how the facilities were located in Hong Kong.</h4>
-     </div>
+    <div class="box">
+      Geographical Factors<br>However, one important factor in discussing the need of sports and recreation facilities versus culture facilities is the location of them.
+     <br>As a family may feel lazy to go to a district that's far from their home to do sports, yet they may be willing to travel far for a certain culture activity they enjoy.
+     <br>So let's look on how the facilities were located in Hong Kong.
+     <br><br>
+Start from the sports and recreation facilities in Hong Kong. As we can see, the distribution of sports and recreation centres in Hong Kong is more or less even. <br>Several districts with a raleticely higher population, like Kwun Tong, has more facilities than others.
+<br>However, several districts has a relatively lower number of facilities. <br>The subject of this issue, Wan Chai, is a significant one of them.
+   
     </div>
   </div>
-  <br>
   <div class="item" tabindex="6">
-    <div class="box" style="background-color:#a8e0ea">
+    <div class="box">
      <div id="map" style="text-align:right; width:500px;height:500px;background-color:#a8e0ea"></div>
        <script type="text/javascript">
        var myMap = echarts.init(document.getElementById('map'));
@@ -596,7 +603,7 @@ $.getJSON(uploadedDataURL, function (geoJson) {
 
     myMap.setOption(option = {
         title: {
-            text: 'Sports and Recreaton Facilities in HK',
+            text: 'Sports and Recreaton Facility Distribution in HK',
             subtext: 'Source: data.gov.hk',
             sublink: 'https://data.gov.hk/en/search/portal/sports'
         },
@@ -652,85 +659,119 @@ $.getJSON(uploadedDataURL, function (geoJson) {
                     {name: '西貢區', value: 9},
                     {name: '離島區', value: 6}
                 ],
-                // 自定义名称映射
-                nameMap: {
-                    'Central and Western': '中西區',
-                    'Eastern': '東區',
-                    'Islands': '離島',
-                    'Kowloon City': '九龍城',
-                    'Kwai Tsing': '葵青',
-                    'Kwun Tong': '觀塘',
-                    'North': '北區',
-                    'Sai Kung': '西貢',
-                    'Sha Tin': '沙田',
-                    'Sham Shui Po': '深水埗',
-                    'Southern': '南區',
-                    'Tai Po': '大埔區',
-                    'Tsuen Wan': '荃灣',
-                    'Tuen Mun': '屯門',
-                    'Wan Chai': '灣仔',
-                    'Wong Tai Sin': '黃大仙',
-                    'Yau Tsim Mong': '油尖旺',
-                    'Yuen Long': '元朗'
-                }
             }
         ]
     });
 });
 </script>
-<br>
-So, as we can see, the distribution of sports and recreation centres in Hong Kong is more or less even. <br>Several districts with a raleticely higher population, like Kwun Tong, has more facilities than others.
-<br>However, several districts has a relatively lower number of facilities. <br>The subject of this issue, Wan Chai, is a significant one of them.
     </div>
   </div>
   <div class="item" tabindex="7">
     <div class="box">
-      
+    <div id="main3" style="width:500px;height:500px"></div>
+       <script type="text/javascript">
+
+            var myChart3 = echarts.init(document.getElementById('main3'));
+            var option = {
+			baseOption: {
+				timeline: {
+					// y: 0,
+					axisType: 'category',
+					// realtime: false,
+					// loop: false,
+					autoPlay: true,
+					// currentIndex: 2,
+					playInterval: 3000,
+					// controlStyle: {
+					//     position: 'left'
+					// },
+					data: ['2013/14','2014/15','2015/16']
+				},
+				title: {
+					subtext: 'Source: HK Gov',
+					sublink:'http://www.lcsd.gov.hk/tc/aboutlcsd/ppr/statistics/cultural.html#Venues',
+					subtextStyle:{
+						align:'center'
+					}
+				},
+				tooltip: {},
+				legend: {
+					x: 'right',
+					data: ['Use rate'],
+					selectedMode: 'single'
+				},
+				calculable : true,
+				series: [{
+						name: 'use rate',
+						type: 'pie',
+						center: ['50%', '50%']
+						//radius: '28%'
+					}
+				]
+			},
+            options: [
+				{
+					title: {text: 'Use Rate of Culture Performance Facilities in HK: 2013/14'},
+					series: [
+						
+						{name: 'use rate',data: [
+							{name: '90-100%', value: 14},
+							{name: '80-90%', value: 4},
+							{name: 'Below 80%', value: 1}
+						]}
+					]
+				},
+				{
+					title : {text: 'Use Rate of Culture Facilities in HK: 2014/15'},
+					series : [
+						{name: 'use rate',data: [
+						    {name: '90-100%', value: 16},
+							{name: '80-90%', value: 1},
+							{name: 'Below 80%', value: 2}
+						]}
+					]
+				},
+				{
+					title : {text: 'Use Rate of Culture Facilities in HK: 2015/16'},
+					series : [
+						{name: 'use rate',data: [
+							{name: '90-100%', value: 14},
+							{name: '80-90%', value: 4},
+							{name: 'Below 80%', value: 1}
+
+					]
+				}
+			]
+        }
+        ]
+}
+ myChart3.setOption(option)
+</script>
     </div>
   </div>
   <div class="item" tabindex="8">
     <div class="box">
-     
+     At the same time, the use rate of all the performing cultural facilities in Hong Kong (the pie chart on the left) shows that the usage of these facilities experienced a fluactuation.
+     <br>But there's always a blank capacity to be fullfill (those whose use rate were below 80%). 
+     <br>This result shows consistance with the bar chart we discussed above, that the culture facilities in Hong Kong do face a bit decline on its usage.
     </div>
   </div>
   <div class="item" tabindex="9">
     <div class="box">
-      
+      At the end, either sports and recreation or cultural usage is important to maintain citizen's healthy life in this city.
+      <br>From the data we know that the need of sports seems to be more urgent and big than that of culture facilities.
+      <br>However, whether a new spot for cultural events would drive more interest on cultural related events remains a question.
     </div>
   </div>
   <div class="item" tabindex="10">
     <div class="box">
-      
+      What's your opinion on this?
+      <br> Contact me with the details in the footer to have more discussion.
     </div>
   </div>
-  <div class="item" tabindex="11">
-    <div class="box">
-      
-    </div>
-  </div>
-  <div class="item" tabindex="12">
-    <div class="box">
-      
-    </div>
-  </div>
-  <div class="item" tabindex="13">
-    <div class="box">
-      
-    </div>
-  </div>
-  <div class="item" tabindex="14">
-    <div class="box">
-      
-    </div>
-  </div>
-</div>
 
+    </body>
 
-
-
-</body>
-<br>
-<br>
 <footer>
 <section>
   <h1>More on this project</h1>
@@ -741,12 +782,12 @@ So, as we can see, the distribution of sports and recreation centres in Hong Kon
 <div id="container">
 <div id="cont">
 <div class="footer_center">
-<h3>My <a href="http://juliannawqy.wordpress.com">work portfolio</a> and <a href="https://github.com/JuliannaWQY">Github</a> </h3>
+<h3>View more on my <a href="http://juliannawqy.wordpress.com">work portfolio</a> and <a href="https://github.com/JuliannaWQY">Github</a> </h3>
 <h5>Template credit to: <a href="http://codepen.io/primalivet/pen/ryjKmV?editors=1000CSS">CSS Grid Layout </a> and <a href="https://codepen.io/nickbraver/pen/mHLCp?editors=1000">Classy Footer </a></h5>
 </div>
 </div>
 </div>
 </div>
-
 </footer>
-</html>
+
+    </html>
